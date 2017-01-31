@@ -88,6 +88,8 @@ alias creeper='ssh -A golan'
 alias wank='ssh -A ssh.raw.no'
 alias golan='ssh -A golan.tu.c.bitbit.net'
 alias hal='ssh -A ssh.raw.no'
+alias pluto='ssh -A pluto.tu.no'
+alias guffen='ssh -A guffen.tu.no'
 
 alias tek='cd ~/tek'
 alias static='cd ~/static.tek.no'
