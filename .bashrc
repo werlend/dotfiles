@@ -80,7 +80,7 @@ alias keyoff='ssh-add -D'
 alias keylist='ssh-add -l'
 
 alias generateConfig='php ~/aether/bin/generateConfig'
-alias updateLocales='php ~/aether/bin/updateLocales.php'
+alias updateLocales='php ~/aether/bin/updateLocales'
 
 alias bustCache='sh ~/adm/bin/varnish_purge.sh'
 
