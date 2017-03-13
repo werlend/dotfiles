@@ -80,14 +80,14 @@ alias keyoff='ssh-add -D'
 alias keylist='ssh-add -l'
 
 alias generateConfig='php ~/aether/bin/generateConfig'
-alias updateLocales='php ~/aether/bin/updateLocales.php'
+alias updateLocales='php ~/aether/bin/updateLocales'
 
 alias bustCache='sh ~/adm/bin/varnish_purge.sh'
 
-alias creeper='ssh -A golan'
-alias wank='ssh -A ssh.raw.no'
-alias golan='ssh -A golan.tu.c.bitbit.net'
+alias golan='ssh -A golan.raw.no'
 alias hal='ssh -A ssh.raw.no'
+alias creeper='ssh -A golan.raw.no'
+alias wank='ssh -A ssh.raw.no'
 alias pluto='ssh -A pluto.tu.no'
 alias guffen='ssh -A guffen.tu.no'
 
