@@ -19,7 +19,7 @@
 ;;(when (not package-archive-contents)
 ;;  (package-refresh-contents))
 (setq jpk-packages
-  '(web-mode, less-css-mode, php-mode, crontab-mode, js-mode, jsx-mode, monokai-theme, zencoding-mode, flycheck, git-gutter))
+  '(web-mode, less-css-mode, php-mode, crontab-mode, js-mode, jsx-mode, monokai-theme, zencoding-mode, flycheck, git-gutter, editorconfig, po-mode))
 (let ((refreshed nil))
   (when (not package-archive-contents)
     (package-refresh-contents)
@@ -112,6 +112,31 @@
 ;; Zencoding - Write html from css selectors
 (require 'zencoding-mode)
 (add-hook 'web-mode-hook 'zencoding-mode) ;; Auto-start on web mode
+
+(require 'editorconfig)
+(editorconfig-mode 1)
+
+(defun po-wrap ()
+  "Filter current po-mode buffer through `msgcat' tool to wrap all lines."
+  (interactive)
+  (if (eq major-mode 'po-mode)
+      (let ((tmp-file (make-temp-file "po-wrap."))
+            (tmp-buf (generate-new-buffer "*temp*")))
+        (unwind-protect
+            (progn
+              (write-region (point-min) (point-max) tmp-file nil 1)
+              (if (zerop
+                   (call-process
+                    "msgcat" nil tmp-buf t (shell-quote-argument tmp-file)))
+                  (let ((saved (point))
+                        (inhibit-read-only t))
+                    (delete-region (point-min) (point-max))
+                    (insert-buffer tmp-buf)
+                    (goto-char (min saved (point-max))))
+                (with-current-buffer tmp-buf
+                  (error (buffer-string)))))
+          (kill-buffer tmp-buf)
+          (delete-file tmp-file)))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
