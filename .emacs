@@ -1,3 +1,8 @@
+;;; Emacs --- Personal settings
+;;; Commentary:
+
+;;; Code:
+
 ;; Define load-path
 ;;(add-to-list 'load-path "~/.emacs.d/lisp/")
 
@@ -7,17 +12,16 @@
   (xterm-register-default-colors)
   (tty-set-up-initial-frame-faces))
 
-(package-initialize)
+(require 'package)
 ;;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
-(require 'package)
+(package-initialize)
 
 ;; Loop through packages and make sure they are installed and update
-;;(when (not package-archive-contents)
-;;  (package-refresh-contents))
+(defvar jpk-packages)
 (setq jpk-packages
   '(web-mode, less-css-mode, php-mode, crontab-mode, js-mode, jsx-mode, monokai-theme, zencoding-mode, flycheck, git-gutter, editorconfig, po-mode))
 (let ((refreshed nil))
@@ -47,9 +51,6 @@
 (global-set-key [end]         'end-of-line)
 (global-set-key [?\C-\d]      'backward-kill-word)
 (global-set-key [C-delete]    'kill-word)
-
-;; Git gutter
-(global-git-gutter-mode +1)
 
 ;; Define auto save and backup file directories
 (defvar backup-dir (expand-file-name "~/.emacs.d/backup/"))
@@ -90,6 +91,7 @@
 (add-to-list 'auto-mode-alist '("crontab" . crontab-mode))
 (unless (fboundp 'prog-mode) (defalias 'prog-mode 'fundamental-mode))
 
+(defvar web-mode-engines-alist)
 (setq web-mode-engines-alist
   '(("php" . "\\.phtml\\'")
     ("blade"  . "\\.blade\\.")
@@ -98,6 +100,9 @@
 
 ;; Set web-mode indent to 4 spaces
 (defun web-mode-hook ()
+  (defvar web-mode-code-indent-offset)
+  (defvar web-mode-markup-indent-offset)
+  (defvar web-mode-css-indent-offset)
   (setq web-mode-code-indent-offset 4)
   (setq web-mode-markup-indent-offset 4)
   (setq web-mode-css-indent-offset 4)
@@ -106,15 +111,26 @@
 (add-hook 'web-mode-hook  'web-mode-hook)
 
 ;; web-mode auto closing / auto pairing
+(defvar web-mode-enable-auto-closing)
 (setq web-mode-enable-auto-closing t)
+(defvar web-mode-enable-auto-pairing)
 (setq web-mode-enable-auto-pairing t)
+
+;; Git gutter
+(require 'git-gutter)
+(global-git-gutter-mode +1)
 
 ;; Zencoding - Write html from css selectors
 (require 'zencoding-mode)
 (add-hook 'web-mode-hook 'zencoding-mode) ;; Auto-start on web mode
 
+;; Follow editor config standards for project
 (require 'editorconfig)
 (editorconfig-mode 1)
+
+;; Check for syntax errors on the fly
+(require 'flycheck)
+(global-flycheck-mode)
 
 (defun po-wrap ()
   "Filter current po-mode buffer through `msgcat' tool to wrap all lines."
@@ -131,7 +147,7 @@
                   (let ((saved (point))
                         (inhibit-read-only t))
                     (delete-region (point-min) (point-max))
-                    (insert-buffer tmp-buf)
+                    (insert-buffer-substring tmp-buf)
                     (goto-char (min saved (point-max))))
                 (with-current-buffer tmp-buf
                   (error (buffer-string)))))
