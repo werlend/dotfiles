@@ -23,7 +23,7 @@
 ;; Loop through packages and make sure they are installed and update
 (defvar jpk-packages)
 (setq jpk-packages
-  '(web-mode, less-css-mode, php-mode, crontab-mode, js-mode, jsx-mode, monokai-theme, zencoding-mode, flycheck, git-gutter, editorconfig, po-mode))
+  '(web-mode, less-css-mode, php-mode, crontab-mode, js-mode, jsx-mode, monokai-theme, zencoding-mode, flycheck, git-gutter, editorconfig, smart-tab, po-mode))
 (let ((refreshed nil))
   (when (not package-archive-contents)
     (package-refresh-contents)
@@ -131,6 +131,15 @@
 ;; Check for syntax errors on the fly
 (require 'flycheck)
 (global-flycheck-mode)
+
+;; Smart tab. Set tab key to autocomplete and indent
+(require 'smart-tab)
+(global-smart-tab-mode)
+(defun hippie-unexpand ()
+  (interactive)
+  (hippie-expand 0))
+(define-key read-expression-map [(tab)] 'hippie-expand)
+(define-key read-expression-map [(shift tab)] 'hippie-unexpand)
 
 (defun po-wrap ()
   "Filter current po-mode buffer through `msgcat' tool to wrap all lines."
