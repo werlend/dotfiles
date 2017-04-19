@@ -20,21 +20,25 @@
   (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
 
-;; Loop through packages and make sure they are installed and update
-(defvar jpk-packages)
-(setq jpk-packages
-  '(web-mode, less-css-mode, php-mode, crontab-mode, js-mode, jsx-mode, monokai-theme, zencoding-mode, flycheck, git-gutter, editorconfig, smart-tab, po-mode))
-(let ((refreshed nil))
-  (when (not package-archive-contents)
-    (package-refresh-contents)
-    (setq refreshed t))
-  (dolist (pkg jpk-packages)
-    (when (and (not (package-installed-p pkg))
-               (assoc pkg package-archive-contents))
-      (unless refreshed
-        (package-refresh-contents)
-        (setq refreshed t))
-      (package-install pkg))))
+;; Loop through packages and make sure they are installed and updated
+(defun ensure-package-installed (&rest packages)
+  ;; Assure every package is installed, ask for installation if it’s not.
+  ;; Return a list of installed packages or nil for every skipped package.
+  (mapcar
+   (lambda (package)
+     (if (package-installed-p package)
+         nil
+       (if (y-or-n-p (format "Package %s is missing. Install it? " package))
+           (package-install package)
+         package)))
+   packages))
+
+;; make sure to have downloaded archive description.
+;; Or use package-archive-contents as suggested by Nicolas Dudebout
+(or (file-exists-p package-user-dir)
+    (package-refresh-contents))
+
+(ensure-package-installed 'editorconfig 'flycheck 'smart-tab 'web-mode 'php-mode 'zencoding-mode 'js3-mode 'jsx-mode 'po-mode 'monokai-theme 'crontab-mode 'less-css-mode 'git-gutter)
 
 ;; Theme
 (load-theme 'monokai t)
@@ -83,7 +87,7 @@
 (add-to-list 'auto-mode-alist '("\\.xml?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.php?\\'" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.js?\\'" . js-mode))
+(add-to-list 'auto-mode-alist '("\\.js?\\'" . js3-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.blade\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl?\\'" . web-mode))
