@@ -136,6 +136,12 @@
 (require 'flycheck)
 (global-flycheck-mode)
 
+;; Fuzzy file search
+(require 'fiplr)
+(global-set-key (kbd "C-x f") 'fiplr-find-file)
+(setq fiplr-ignored-globs '((directories (".git" ".svn"))
+                               (files ("*.jpg" "*.png" "*.zip" "*~" "*.tpl.php"))))
+
 ;; Smart tab. Set tab key to autocomplete and indent
 (require 'smart-tab)
 (global-smart-tab-mode)
