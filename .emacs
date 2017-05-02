@@ -38,7 +38,7 @@
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
 
-(ensure-package-installed 'editorconfig 'flycheck 'smart-tab 'web-mode 'php-mode 'zencoding-mode 'js3-mode 'jsx-mode 'po-mode 'monokai-theme 'crontab-mode 'less-css-mode 'git-gutter)
+(ensure-package-installed 'editorconfig 'flycheck 'smart-tab 'web-mode 'php-mode 'vue-mode 'zencoding-mode 'js3-mode 'jsx-mode 'po-mode 'monokai-theme 'crontab-mode 'less-css-mode 'git-gutter)
 
 ;; Theme
 (load-theme 'monokai t)
@@ -92,6 +92,7 @@
 (add-to-list 'auto-mode-alist '("\\.blade\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.less?\\'" . less-css-mode))
+(add-to-list 'auto-mode-alist '("\\.vue?\\'" . vue-mode))
 (add-to-list 'auto-mode-alist '("crontab" . crontab-mode))
 (unless (fboundp 'prog-mode) (defalias 'prog-mode 'fundamental-mode))
 
@@ -119,6 +120,10 @@
 (setq web-mode-enable-auto-closing t)
 (defvar web-mode-enable-auto-pairing)
 (setq web-mode-enable-auto-pairing t)
+
+;; vue-mode background highlight
+(defvar mmm-submode-decoration-level)
+(setq mmm-submode-decoration-level 0)
 
 ;; Git gutter
 (require 'git-gutter)
