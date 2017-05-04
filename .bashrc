@@ -59,6 +59,10 @@ esac
 # Set terminal colors. For emacs themes to work etc
 export TERM=xterm-256color
 
+# set default editor
+export ALTERNATE_EDITOR=""
+export EDITOR=emacsclient
+
 # Define your own aliases here ...
 #if [ -f ~/.bash_aliases ]; then
 #    . ~/.bash_aliases
@@ -74,6 +78,8 @@ export TERM=xterm-256color
 [ -z "$SSH_CLIENT" ] && . $HOME/.ssh-agent
 
 #~/adm/bash_completion.sh
+
+alias e="emacsclient -t"
 
 alias keyon="ssh-add -t 10800"
 alias keyoff='ssh-add -D'
