@@ -1,2 +1,5 @@
 [pull]
 rebase = true
+
+[fetch]
+recurseSubmodules = true
