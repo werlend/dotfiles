@@ -3,3 +3,6 @@ rebase = true
 
 [fetch]
 recurseSubmodules = true
+
+[rebase]
+stat = true
