@@ -94,6 +94,7 @@
 (add-to-list 'auto-mode-alist '("\\.less?\\'" . less-css-mode))
 (add-to-list 'auto-mode-alist '("\\.vue?\\'" . vue-mode))
 (add-to-list 'auto-mode-alist '("crontab" . crontab-mode))
+(add-to-list 'auto-mode-alist '(".env" . conf-mode))
 (unless (fboundp 'prog-mode) (defalias 'prog-mode 'fundamental-mode))
 
 (defvar web-mode-engines-alist)
