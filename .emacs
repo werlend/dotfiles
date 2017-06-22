@@ -38,7 +38,7 @@
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
 
-(ensure-package-installed 'editorconfig 'flycheck 'smart-tab 'web-mode 'php-mode 'vue-mode 'zencoding-mode 'js3-mode 'jsx-mode 'po-mode 'monokai-theme 'crontab-mode 'less-css-mode 'git-gutter)
+(ensure-package-installed 'editorconfig 'flycheck 'smart-tab 'web-mode 'php-mode 'vue-mode 'zencoding-mode 'js3-mode 'jsx-mode 'po-mode 'monokai-theme 'crontab-mode 'less-css-mode 'git-gutter 'bracketed-paste)
 
 ;; Theme
 (load-theme 'monokai t)
@@ -125,6 +125,9 @@
 ;; vue-mode background highlight
 (defvar mmm-submode-decoration-level)
 (setq mmm-submode-decoration-level 0)
+
+;; Bracketed paste
+(require 'bracketed-paste)
 
 ;; Git gutter
 (require 'git-gutter)
