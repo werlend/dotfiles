@@ -128,6 +128,7 @@
 
 ;; Bracketed paste
 (require 'bracketed-paste)
+(bracketed-paste-enable)
 
 ;; Git gutter
 (require 'git-gutter)
