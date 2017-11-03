@@ -6,3 +6,8 @@ recurseSubmodules = true
 
 [rebase]
 stat = true
+[user]
+	name = Erlend Blakstad
+	email = erlend@tumedia.no
+[push]
+	default = simple
