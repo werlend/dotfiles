@@ -108,3 +108,5 @@ alias tekno='cd ~/tekno'
 alias tu='cd ~/tu'
 alias digi='cd ~/digi'
 alias aperitif='cd ~/aperitif'
+
+alias aether='vendor/bin/aether'
