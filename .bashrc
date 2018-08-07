@@ -96,6 +96,7 @@ alias creeper='ssh -A golan.raw.no'
 alias wank='ssh -A ssh.raw.no'
 alias pluto='ssh -A pluto.tu.no'
 alias guffen='ssh -A guffen.tu.no'
+alias roy='ssh -A roy.gamer.no'
 
 alias tek='cd ~/tek'
 alias static='cd ~/static.tek.no'
