@@ -110,3 +110,4 @@ alias digi='cd ~/digi'
 alias aperitif='cd ~/aperitif'
 
 alias aether='vendor/bin/aether'
+alias artisan='php artisan'
