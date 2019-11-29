@@ -98,6 +98,8 @@ alias pluto='ssh -A pluto.tu.no'
 alias guffen='ssh -A guffen.tu.no'
 alias roy='ssh -A roy.gamer.no'
 alias grom='ssh -A gromguten.gamer.no'
+alias knoke='ssh -A knoke.gamer.no'
+alias vold='ssh -A sersjantvold.gamer.no'
 
 alias tek='cd ~/tek'
 alias static='cd ~/static.tek.no'
