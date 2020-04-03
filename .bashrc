@@ -105,6 +105,7 @@ alias css='cd ~/gamer/assets/css'
 alias js='cd ~/gamer/assets/js'
 alias lib='cd ~/commonlibs/lib'
 alias gamer='cd ~/gamer'
+alias ggmp='cd ~/goodgameas/ggmp'
 
 alias aether='vendor/bin/aether'
 alias artisan='php artisan'
