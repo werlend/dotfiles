@@ -100,6 +100,7 @@ alias roy='ssh -A roy.gamer.no'
 alias grom='ssh -A gromguten.gamer.no'
 alias knoke='ssh -A knoke.gamer.no'
 alias vold='ssh -A sersjantvold.gamer.no'
+alias hannibal='ssh -A hannibal.gamer.no'
 
 alias css='cd ~/gamer/assets/css'
 alias js='cd ~/gamer/assets/js'
