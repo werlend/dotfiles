@@ -105,7 +105,7 @@ alias hannibal='ssh -A hannibal.gamer.no'
 alias css='cd ~/gamer/assets/css'
 alias js='cd ~/gamer/assets/js'
 alias gamer='cd ~/gamer'
-alias ggmp='cd ~/goodgameas/ggmp'
+alias ggwp='cd ~/goodgameas/ggwp'
 alias paradise='cd ~/goodgameas/paradise'
 
 alias aether='vendor/bin/aether'
