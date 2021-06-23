@@ -38,7 +38,7 @@
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
 
-(ensure-package-installed 'editorconfig 'flycheck 'smart-tab 'web-mode 'php-mode 'vue-mode 'zencoding-mode 'js3-mode 'po-mode 'monokai-theme 'crontab-mode 'less-css-mode 'git-gutter 'bracketed-paste 'fiplr 'dockerfile-mode)
+(ensure-package-installed 'editorconfig 'flycheck 'smart-tab 'web-mode 'php-mode 'vue-mode 'prettier 'zencoding-mode 'js3-mode 'po-mode 'monokai-theme 'crontab-mode 'less-css-mode 'git-gutter 'bracketed-paste 'fiplr 'dockerfile-mode)
 
 ;; Theme
 (load-theme 'monokai t)
@@ -147,6 +147,9 @@
 (global-flycheck-mode)
 (setq flycheck-phpcs-standard "PSR12")
 
+(require 'prettier)
+(add-hook 'after-init-hook #'global-prettier-mode)
+
 ;; Fuzzy file search
 (require 'fiplr)
 (global-set-key (kbd "C-x f") 'fiplr-find-file)
@@ -210,7 +213,7 @@
  '(magit-diff-use-overlays nil)
     '(package-selected-packages
          (quote
-             (dockerfile-mode zencoding-mode web-mode vue-mode typescript-mode twig-mode smart-tab pug-mode po-mode php-mode monokai-theme less-css-mode jsx-mode js3-mode git-gutter flycheck fiplr editorconfig crontab-mode bracketed-paste)))
+             (prettier yaml-mode dockerfile-mode zencoding-mode web-mode vue-mode typescript-mode twig-mode smart-tab pug-mode po-mode php-mode monokai-theme less-css-mode jsx-mode js3-mode git-gutter flycheck fiplr editorconfig crontab-mode bracketed-paste)))
  '(vc-annotate-background nil)
     '(vc-annotate-color-map
          (quote
