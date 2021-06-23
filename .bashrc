@@ -110,3 +110,5 @@ alias paradise='cd ~/goodgameas/paradise'
 
 alias aether='vendor/bin/aether'
 alias artisan='php artisan'
+alias cupdate='composer update && composer update'
+alias situla='aws --endpoint=https://situla.bitbit.net'
