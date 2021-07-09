@@ -13,7 +13,7 @@
   (tty-set-up-initial-frame-faces))
 
 (require 'package)
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
@@ -38,7 +38,7 @@
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
 
-(ensure-package-installed 'editorconfig 'flycheck 'smart-tab 'web-mode 'php-mode 'vue-mode 'prettier 'zencoding-mode 'js3-mode 'po-mode 'monokai-theme 'crontab-mode 'less-css-mode 'git-gutter 'bracketed-paste 'fiplr 'dockerfile-mode)
+(ensure-package-installed 'editorconfig 'flycheck 'smart-tab 'web-mode 'php-mode 'vue-mode 'prettier 'zencoding-mode 'js3-mode 'po-mode 'monokai-theme 'crontab-mode 'less-css-mode 'git-gutter 'bracketed-paste 'fiplr 'dockerfile-mode, 'projectile)
 
 ;; Theme
 (load-theme 'monokai t)
@@ -165,6 +165,11 @@
 (define-key read-expression-map [(tab)] 'hippie-expand)
 (define-key read-expression-map [(shift tab)] 'hippie-unexpand)
 
+;; projectile settings
+(projectile-mode +1)
+;; Recommended keymap prefix on Windows/Linux
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
 (defun po-wrap ()
   "Filter current po-mode buffer through `msgcat' tool to wrap all lines."
   (interactive)
@@ -211,9 +216,14 @@
                  ("#A41F99" . 85)
                  ("#49483E" . 100))))
  '(magit-diff-use-overlays nil)
+    '(package-archives
+         (quote
+             (("gnu" . "https://elpa.gnu.org/packages/")
+                 ("marmalade" . "https://marmalade-repo.org/packages/")
+                 ("melpa" . "https://melpa.org/packages/"))))
     '(package-selected-packages
          (quote
-             (prettier yaml-mode dockerfile-mode zencoding-mode web-mode vue-mode typescript-mode twig-mode smart-tab pug-mode po-mode php-mode monokai-theme less-css-mode jsx-mode js3-mode git-gutter flycheck fiplr editorconfig crontab-mode bracketed-paste)))
+             (projectile prettier yaml-mode dockerfile-mode zencoding-mode web-mode vue-mode typescript-mode twig-mode smart-tab pug-mode po-mode php-mode monokai-theme less-css-mode jsx-mode js3-mode git-gutter flycheck fiplr editorconfig crontab-mode bracketed-paste)))
  '(vc-annotate-background nil)
     '(vc-annotate-color-map
          (quote
