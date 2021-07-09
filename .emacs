@@ -21,9 +21,9 @@
 (package-initialize)
 
 ;; Loop through packages and make sure they are installed and updated
+;; Assure every package is installed, ask for installation if it’s not.
+;; Return a list of installed packages or nil for every skipped package.
 (defun ensure-package-installed (&rest packages)
-  ;; Assure every package is installed, ask for installation if it’s not.
-  ;; Return a list of installed packages or nil for every skipped package.
   (mapcar
    (lambda (package)
      (if (package-installed-p package)
@@ -166,6 +166,7 @@
 (define-key read-expression-map [(shift tab)] 'hippie-unexpand)
 
 ;; projectile settings
+(require 'projectile)
 (projectile-mode +1)
 ;; Recommended keymap prefix on Windows/Linux
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
