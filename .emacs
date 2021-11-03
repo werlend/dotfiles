@@ -38,7 +38,7 @@
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
 
-(ensure-package-installed 'editorconfig 'flycheck 'smart-tab 'web-mode 'php-mode 'vue-mode 'prettier 'zencoding-mode 'js3-mode 'po-mode 'monokai-theme 'crontab-mode 'less-css-mode 'git-gutter 'bracketed-paste 'fiplr 'dockerfile-mode, 'projectile)
+(ensure-package-installed 'editorconfig 'flycheck 'smart-tab 'web-mode 'php-mode 'vue-mode 'prettier 'zencoding-mode 'js3-mode 'po-mode 'monokai-theme 'crontab-mode 'less-css-mode 'git-gutter 'bracketed-paste 'fiplr 'dockerfile-mode 'projectile)
 
 ;; Theme
 (load-theme 'monokai t)
