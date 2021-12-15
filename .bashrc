@@ -85,11 +85,6 @@ alias keyon="ssh-add -t 10800"
 alias keyoff='ssh-add -D'
 alias keylist='ssh-add -l'
 
-alias generateConfig='php ~/aether/bin/generateConfig'
-alias updateLocales='php ~/aether/bin/updateLocales'
-
-alias bustCache='sh ~/adm/bin/varnish_purge.sh'
-
 alias golan='ssh -A golan.raw.no'
 alias hal='ssh -A ssh.raw.no'
 alias creeper='ssh -A golan.raw.no'
@@ -102,9 +97,9 @@ alias knoke='ssh -A knoke.gamer.no'
 alias vold='ssh -A sersjantvold.gamer.no'
 alias hannibal='ssh -A hannibal.gamer.no'
 
-alias css='cd ~/gamer/assets/css'
-alias js='cd ~/gamer/assets/js'
-alias gamer='cd ~/gamer'
+alias css='cd ~/goodgameas/gamer/resources/sass'
+alias js='cd ~/goodgameas/gamer/resources/js'
+alias gamer='cd ~/goodgameas/gamer'
 alias ggwp='cd ~/goodgameas/ggwp'
 alias paradise='cd ~/goodgameas/paradise'
 
@@ -112,3 +107,7 @@ alias aether='vendor/bin/aether'
 alias artisan='php artisan'
 alias cupdate='composer update && composer update'
 alias situla='aws --endpoint=https://situla.bitbit.net'
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
