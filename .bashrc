@@ -103,6 +103,8 @@ alias gamer='cd ~/goodgameas/gamer'
 alias ggwp='cd ~/goodgameas/ggwp'
 alias paradise='cd ~/goodgameas/paradise'
 
+alias php5='/opt/php-5.6.36-custom/bin/php -c /opt/php-5.6.36-custom/lib/php.ini'
+alias startebot='php5 bootstrap.php'
 alias aether='vendor/bin/aether'
 alias artisan='php artisan'
 alias cupdate='composer update && composer update'
