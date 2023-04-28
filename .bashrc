@@ -59,6 +59,8 @@ esac
 # Set terminal colors. For emacs themes to work etc
 export TERM=xterm-256color
 
+export PATH="$HOME/.local/bin:$PATH"
+
 # set default editor
 export ALTERNATE_EDITOR=""
 export EDITOR=emacsclient
