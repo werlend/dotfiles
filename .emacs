@@ -42,7 +42,6 @@
 (straight-use-package 'prettier)
 (straight-use-package 'zencoding-mode)
 (straight-use-package 'js3-mode)
-(straight-use-package 'po-mode)
 (straight-use-package 'monokai-theme)
 (straight-use-package 'crontab-mode)
 (straight-use-package 'less-css-mode)
@@ -52,6 +51,7 @@
 (straight-use-package 'fiplr)
 (straight-use-package 'dockerfile-mode)
 (straight-use-package 'projectile)
+(straight-use-package '(copilot :host github :repo "zerolfx/copilot.el" :files ("dist" "*.el")))
 
 ;; Set theme
 (load-theme 'monokai t)
@@ -59,7 +59,7 @@
 ;; Hides menu by default
 (menu-bar-mode -1)
 
-;; Key bindings
+;; Global key bindings
 (global-set-key "\C-q"        'replace-string)
 (global-set-key "\C-l"        'goto-line)
 (global-set-key "\C-u"        'whitespace-cleanup)
@@ -128,6 +128,14 @@
   (setq web-mode-css-indent-offset 4)
 )
 
+;; Configure copilot
+(require 'copilot)
+(add-hook 'prog-mode-hook 'copilot-mode)
+(define-key copilot-completion-map (kbd "C-c 1") 'copilot-previous-completion)
+(define-key copilot-completion-map (kbd "C-c 2") 'copilot-next-completion)
+(define-key copilot-completion-map (kbd "C-c 3") 'copilot-accept-completion)
+
+;; Add web-mode-hook
 (add-hook 'web-mode-hook  'web-mode-hook)
 
 ;; web-mode auto closing / auto pairing
@@ -172,7 +180,6 @@
 (global-set-key (kbd "C-x f") 'fiplr-find-file)
 (setq fiplr-ignored-globs '((directories (".git" ".svn"))
                                (files ("*.jpg" "*.png" "*.zip" "*~" "*.tpl.php"))))
-
 ;; Smart tab. Set tab key to autocomplete and indent
 (require 'smart-tab)
 (global-smart-tab-mode)
@@ -187,29 +194,6 @@
 (projectile-mode +1)
 ;; Recommended keymap prefix on Windows/Linux
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-
-;; po mode
-(defun po-wrap ()
-  "Filter current po-mode buffer through `msgcat' tool to wrap all lines."
-  (interactive)
-  (if (eq major-mode 'po-mode)
-      (let ((tmp-file (make-temp-file "po-wrap."))
-            (tmp-buf (generate-new-buffer "*temp*")))
-        (unwind-protect
-            (progn
-              (write-region (point-min) (point-max) tmp-file nil 1)
-              (if (zerop
-                   (call-process
-                    "msgcat" nil tmp-buf t (shell-quote-argument tmp-file)))
-                  (let ((saved (point))
-                        (inhibit-read-only t))
-                    (delete-region (point-min) (point-max))
-                    (insert-buffer-substring tmp-buf)
-                    (goto-char (min saved (point-max))))
-                (with-current-buffer tmp-buf
-                  (error (buffer-string)))))
-          (kill-buffer tmp-buf)
-          (delete-file tmp-file)))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
