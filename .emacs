@@ -15,33 +15,45 @@
 ;; TLS
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
-(require 'package)
-(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                     ("melpa" . "https://melpa.org/packages/")))
+;; For emacs >= 27 - Disable package.el when using straight.el
+;; (setq package-enable-at-startup nil)
 
-(package-initialize)
+;; Install and setup straight.el
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 6))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-;; Loop through packages and make sure they are installed and updated
-;; Assure every package is installed, ask for installation if it’s not.
-;; Return a list of installed packages or nil for every skipped package.
-(defun ensure-package-installed (&rest packages)
-  (mapcar
-   (lambda (package)
-     (if (package-installed-p package)
-         nil
-       (if (y-or-n-p (format "Package %s is missing. Install it? " package))
-           (package-install package)
-         package)))
-   packages))
+;; Install packages
+(straight-use-package 'editorconfig)
+(straight-use-package 'flycheck)
+(straight-use-package 'smart-tab)
+(straight-use-package 'web-mode)
+(straight-use-package 'php-mode)
+(straight-use-package 'vue-mode)
+(straight-use-package 'prettier)
+(straight-use-package 'zencoding-mode)
+(straight-use-package 'js3-mode)
+(straight-use-package 'po-mode)
+(straight-use-package 'monokai-theme)
+(straight-use-package 'crontab-mode)
+(straight-use-package 'less-css-mode)
+;; (straight-use-package 'git-gutter) ;; currently not working with straight
+(straight-use-package 'git-gutter+) ;; older, but works
+(straight-use-package 'bracketed-paste)
+(straight-use-package 'fiplr)
+(straight-use-package 'dockerfile-mode)
+(straight-use-package 'projectile)
 
-;; make sure to have downloaded archive description.
-;; Or use package-archive-contents as suggested by Nicolas Dudebout
-(or (file-exists-p package-user-dir)
-    (package-refresh-contents))
-
-(ensure-package-installed 'editorconfig 'flycheck 'smart-tab 'web-mode 'php-mode 'vue-mode 'prettier 'zencoding-mode 'js3-mode 'po-mode 'monokai-theme 'crontab-mode 'less-css-mode 'git-gutter 'bracketed-paste 'fiplr 'dockerfile-mode 'projectile)
-
-;; Theme
+;; Set theme
 (load-theme 'monokai t)
 
 ;; Hides menu by default
@@ -133,8 +145,10 @@
 (bracketed-paste-enable)
 
 ;; Git gutter
-(require 'git-gutter)
-(global-git-gutter-mode +1)
+;; (require 'git-gutter)
+;; (global-git-gutter-mode +1)
+(require 'git-gutter+)
+(global-git-gutter+-mode 1)
 
 ;; Zencoding - Write html from css selectors
 (require 'zencoding-mode)
