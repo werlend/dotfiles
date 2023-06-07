@@ -18,7 +18,7 @@
 ;; For emacs >= 27 - Disable package.el when using straight.el
 ;; (setq package-enable-at-startup nil)
 
-;; Install and setup straight.el
+;; Install and setup straight.el package manager
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -32,7 +32,7 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-;; Install packages
+;; Install packages from straight
 (straight-use-package 'editorconfig)
 (straight-use-package 'flycheck)
 (straight-use-package 'smart-tab)
@@ -75,8 +75,7 @@
 (setq backup-directory-alist (list (cons ".*" backup-dir)))
 (setq auto-save-list-file-prefix autosave-dir)
 (setq auto-save-file-name-transforms `((".*" ,autosave-dir t)))
-; stop creating those #autosave# files
-(setq auto-save-default nil)
+(setq auto-save-default nil) ; stop creating those #autosave# files
 
 ;; Turn off tabs and set 4 spaces - default mode
 (setq-default indent-tabs-mode nil)
