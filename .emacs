@@ -51,6 +51,8 @@
 (straight-use-package 'fiplr)
 (straight-use-package 'dockerfile-mode)
 (straight-use-package 'projectile)
+(straight-use-package 'lsp-mode)
+(straight-use-package 'company)
 (straight-use-package '(copilot :host github :repo "zerolfx/copilot.el" :files ("dist" "*.el")))
 
 ;; Set theme
@@ -134,8 +136,12 @@
 (define-key copilot-completion-map (kbd "C-c 2") 'copilot-next-completion)
 (define-key copilot-completion-map (kbd "C-c 3") 'copilot-accept-completion)
 
+;; Configure lsp-mode
+(require 'lsp-mode)
+(add-hook 'php-mode-hook #'lsp)
+
 ;; Add web-mode-hook
-(add-hook 'web-mode-hook  'web-mode-hook)
+;; (add-hook 'web-mode-hook  'web-mode-hook)
 
 ;; web-mode auto closing / auto pairing
 (defvar web-mode-enable-auto-closing)
@@ -169,6 +175,10 @@
 (require 'flycheck)
 (global-flycheck-mode)
 (setq flycheck-phpcs-standard "PSR12")
+
+;; Auto complete
+;; (require 'company)
+;; (global-company-mode)
 
 ;; Prettier
 ;; (require 'prettier)
