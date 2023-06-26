@@ -15,6 +15,13 @@
 ;; TLS
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
+;; Garbage collection settings
+(setq gc-cons-threshold (eval-when-compile (* 1024 1024 1024)))
+(run-with-idle-timer 2 t (lambda () (garbage-collect)))
+
+;; Increase the amount of data which Emacs reads from the LSP process.
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
+
 ;; For emacs >= 27 - Disable package.el when using straight.el
 ;; (setq package-enable-at-startup nil)
 
