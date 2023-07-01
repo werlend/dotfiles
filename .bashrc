@@ -65,6 +65,8 @@ export PATH="$HOME/.local/bin:$PATH"
 export ALTERNATE_EDITOR=""
 export EDITOR=emacsclient
 
+export PUBLICIP=$(curl -s http://whatismyip.akamai.com/)
+
 # Define your own aliases here ...
 #if [ -f ~/.bash_aliases ]; then
 #    . ~/.bash_aliases
@@ -113,6 +115,8 @@ alias artisan='php artisan'
 alias pest='./vendor/bin/pest'
 alias cupdate='composer update && composer update'
 alias situla='aws --endpoint=https://situla.bitbit.net'
+
+alias dev='npm run dev -- --host ${PUBLICIP}'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
