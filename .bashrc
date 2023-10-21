@@ -102,6 +102,10 @@ alias vold='ssh -A sersjantvold.gamer.no'
 alias hannibal='ssh -A hannibal.gamer.no'
 alias admin='ssh -A admin.gamer.c.bitbit.net'
 
+alias fiffus='ssh -A fiffus.gamer.no'
+alias skafte='ssh -A skaftetryne.gamer.no'
+alias svartepetter='ssh -A svartepetter.gamer.no'
+
 alias css='cd ~/goodgameas/gamer/resources/sass'
 alias js='cd ~/goodgameas/gamer/resources/js'
 alias gamer='cd ~/goodgameas/gamer'
