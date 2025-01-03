@@ -79,7 +79,7 @@ export PUBLICIP=$(curl -s http://whatismyip.akamai.com/)
 #    . /etc/bash_completion
 #fi
 
-[ -z "$SSH_CLIENT" ] && . $HOME/.ssh-agent
+# [ -z "$SSH_CLIENT" ] && . $HOME/.ssh-agent
 
 #~/adm/bash_completion.sh
 
