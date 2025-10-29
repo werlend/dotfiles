@@ -119,9 +119,14 @@ alias artisan='php artisan'
 alias pest='./vendor/bin/pest'
 alias cupdate='composer update && composer update'
 alias situla='aws --endpoint=https://situla.bitbit.net'
+alias oc='~/oc/oc'
 
 alias dev='npm run dev -- --host ${PUBLICIP}'
+
+alias buildplugin='sh /home/erlend/goodgameas/ggplugin/build.sh'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export NODE_OPTIONS=--max_old_space_size=8192
