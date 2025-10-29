@@ -23,7 +23,7 @@
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
 
 ;; For emacs >= 27 - Disable package.el when using straight.el
-;; (setq package-enable-at-startup nil)
+(setq package-enable-at-startup nil)
 
 ;; Install and setup straight.el package manager
 (defvar bootstrap-version)
@@ -52,6 +52,7 @@
 (straight-use-package 'monokai-theme)
 (straight-use-package 'crontab-mode)
 (straight-use-package 'less-css-mode)
+(straight-use-package 'csharp-mode)
 ;; (straight-use-package 'git-gutter) ;; currently not working with straight
 (straight-use-package 'git-gutter+) ;; older, but works
 (straight-use-package 'bracketed-paste)
@@ -115,6 +116,7 @@
 (add-to-list 'auto-mode-alist '("\\.tpl?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.less?\\'" . less-css-mode))
 (add-to-list 'auto-mode-alist '("\\.vue?\\'" . vue-mode))
+(add-to-list 'auto-mode-alist '("\\.cs?\\'" . csharp-mode))
 (add-to-list 'auto-mode-alist '("crontab" . crontab-mode))
 (add-to-list 'auto-mode-alist '(".env" . conf-mode))
 (unless (fboundp 'prog-mode) (defalias 'prog-mode 'fundamental-mode))
@@ -144,8 +146,14 @@
 (define-key copilot-completion-map (kbd "C-c 3") 'copilot-accept-completion)
 
 ;; Configure lsp-mode
-(require 'lsp-mode)
-(add-hook 'php-mode-hook #'lsp)
+;; (require 'lsp-mode)
+;; (add-hook 'php-mode-hook #'lsp)
+;; (setq lsp-log-io nil)
+
+;; Configure intelephense
+;; (setq lsp-intelephense-server-command "intelephense --max-old-space-size=2056 --stdio")
+;; (setq lsp-intelephense-files-exclude [**/.git/** **/.svn/** **/.hg/** **/CVS/** **/.DS_Store/** **/node_modules/** **/bower_components/** **/vendor/**/{Test,test,Tests,tests}/** **/resources/**])
+;;(setq lsp-intelephense-clear-cache t)
 
 ;; Add web-mode-hook
 ;; (add-hook 'web-mode-hook  'web-mode-hook)
